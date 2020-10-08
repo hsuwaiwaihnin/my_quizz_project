@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
+</head>
+<body>
+	<div class="container my-5">
+		<div class="row">
+			<div class="col-12 col-md-4">
+				<h5 class="text-success">hello click me</h5>
+				<div class="d-flex">
+					<input type="hidden" class="answer" id="2" data-id="1">
+					<div class="form-check">
+					  <input class="form-check-input" type="radio" name="exampleRadios" id="r1" value="1" checked>
+					  <label class="form-check-label r1" for="r1">
+					  	radio1
+					  </label>
+					</div>
+					<div class="form-check">
+					  <input class="form-check-input" type="radio" name="exampleRadios" id="r2" value="2">
+					  <label class="form-check-label r2" for="r2">
+					    radio2
+					  </label>
+					</div>
+					<div class="form-check">
+					  <input class="form-check-input" type="radio" name="exampleRadios" id="r3" value="3">
+					  <label class="form-check-label r3" for="r3">
+					    radio3
+					  </label>
+					</div>
+				</div>
+				<button class="btn btn-success click">show answer</button>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="bootstrap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			// alert('ok');
+			var count=0;
+			$('.click').click(function() {
+				/* Act on the event */
+				count++;
+				var r1  = $('#r1').val();
+				var r2  = $('#r2').val();
+				var r3  = $('#r1').val();
+				var anser = $('.answer').data('id');
+				// alert(anser);
+				if(r1==anser){
+					// alert("message?: DOMString");
+					$('.r1').addClass('bg-success');
+					$('.r2').addClass('bg-danger');
+					$('.r3').addClass('bg-danger');
+				}
+				if(count==2){
+					$('.r1').removeClass('bg-success');
+					$('.r2').removeClass('bg-danger');
+					$('.r3').removeClass('bg-danger');
+					count=0;
+				}
+			});
+		});
+	</script>
+</body>
+</html>
