@@ -14,5 +14,18 @@
             @endforeach
         </div>
 	</div>
-
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12 col-md-6 p-4">
+                <video autoplay="autoplay" muted="muted" playsinline="playsinline" loop="loop" src="frontend/img/Assign.mp4" {{-- src="https://cf.quizizz.com/img/marketing/ET,%20Assign.mp4" --}} poster="https://cf.quizizz.com/img/marketing/Marketing_Homepage-Carousel-2.jpg" style="width: 400px;"></video>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="mt-5">
+                    <h1 class="mb-4">...and keep them up-to-date afterwards.</h1>
+                    <p style="font-size: 20px;line-height: 30px;">Assign e-learning with or without deadlines for asynchronous learning.</p>
+                    <p style="font-size: 20px;line-height: 30px;">Use study tools like retakes and flashcards to help employees retain information over time.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

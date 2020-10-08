@@ -32,6 +32,7 @@ Route::get('subjectListTF','FrontendController@subjectTestTF')->name('subjectLis
 Route::get('questionListMCQ/{id}','FrontendController@questionTestMCQ')->name('questionListMCQ');
 Route::get('questionListTF/{id}','FrontendController@questionTestTF')->name('questionListTF');
 Route::post('storeanswer','FrontendController@storedata')->name('storeanswer');
+Route::get('userprofile','FrontendController@profiledata')->name('userprofile');
 
 });
 

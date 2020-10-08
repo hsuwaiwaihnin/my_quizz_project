@@ -1,5 +1,19 @@
 @extends('frontendtemplate')
 @section('content')
+<div class="container-fluid p-0" style="position: relative;width: 100%;height: 100vh;overflow: hidden;">
+            <!-- image   -->
+            <div class="background-img" style="position: absolute;width: 100%;height: 100%;overflow: hidden;">
+                <img src="{{asset('frontend/img/bg2.jpg')}}" style="position: absolute;width: 100%;height: 100%;background-size: cover;background-position: center;">
+            </div>
+            <div class="content-bg" style="position: absolute;top: 35%;left: 7%;z-index: 2;">
+                <p style="font-size: 30px;font-weight: 100;opacity: .8;" class="text-light">The Best Quiz Of The State</p>
+                <h1 class="text-light" style="font-size: 50px;line-height: 70px;margin-bottom: 15px;letter-spacing: 5px;">Online Quizz System</h1>
+                <button class="btn btn-light text-dark my-3">Improve Now</button>
+            </div>
+            <div class="black" style="position: absolute;width: 100%;height: 100%;background: rgba(0,0,0,.3);left: 0;top: 0;z-index: 1;">
+                
+            </div>
+    </div>
 <!-- service -->
     <div class="container-fluid " id="service" style="background-color: #EBEDEF;padding-top: 50px;padding-bottom: 50px;">
         <div class="row">
@@ -98,7 +112,11 @@
                 <div class="card text-center">
                     <div class="card-body py-5 shadow">
                         <img src="{{asset('frontend/img/mcq.jpg')}}" style="width: 100%; height: 200px;">
+                        @if(Auth::check())
                         <a class="btn btn-success btn-md mt-3" href="{{route('subjectListMCQ')}}">Multiple Choice</a>
+                        @else
+                        <a class="btn btn-success btn-md mt-3" href="{{route('login')}}">Multiple Choice</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -106,30 +124,17 @@
                 <div class="card text-center">
                     <div class="card-body py-5 shadow">
                         <img src="{{asset('frontend/img/tf.jpg')}}" style="width: 100%; height: 200px;">
+                        @if(Auth::check())
                         <a class="btn btn-success btn-md mt-3" href="{{route('subjectListTF')}}">True or False</a>
+                        @else
+                        <a class="btn btn-success btn-md mt-3" href="{{route('login')}}">True or False</a>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
     {{-- end choose section --}}
-     <!-- quiz type -->
-    {{--<div class="container" style="margin:50px auto;">
-        <h1 class="text-center mb-5">Explore millions of Created quizzes</h1>
-        <div class="row">
-            @foreach($subjects as $sub)
-            <div class="col-12 col-md-3 mb-3">
-                <div class="card text-center">
-                    <div class="card-body py-5 shadow">
-                        <img src="{{$sub->photo}}" style="width: 100%; height: 150px;">
-                        <a class="btn btn-success btn-md" href="{{route('questionList',$sub->id)}}">Start Quizz</a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>--}}
-    <!-- end  --> 
     <!-- what we can do -->
     <div class="container-fluid" style="width: 100%;background-image: url('frontend/img/q1.jpg');height: 70vh;background-attachment: fixed;background-size: cover;position: relative;padding: 0px;" id="whatdo">
         <div class="black" style="position: absolute;width: 100%;height: 100%;background: rgba(0,0,0,.7);">

@@ -48,20 +48,35 @@ class FrontendController extends Controller
 
 	public function storedata(Request $request)
 	{
-		$carts=json_decode($request->data);
-		//dd($carts);
+		$user_mark=json_decode($request->data);
+		//dd($user_mark);
 
 		$user=User::find(Auth::id());
 		$total=0;
-		$subject_id=$carts[0]->subject_id;
-		foreach ($carts as $row) {
+		$subject_id=$user_mark[0]->subject_id;
+		foreach ($user_mark as $row) {
 			$total+=$row->status;
 		}
 		$user->subjects()->attach($subject_id,['answer_date'=>date('Y-m-d'),'total'=>$total]);
 
 		return $total;
-
-
 		
+	}
+
+	public function profiledata(Request $request)
+	{
+		$users=Auth::user();
+		foreach ($users->subjects as $row) {
+			//dd($row);
+			$subject_name=$row->name;
+			$user_name=Auth::user()->name;
+			$subject_id=$row->pivot->subject_id;
+			$answer_date=$row->pivot->answer_date;
+			$total=$row->pivot->total;
+			//dd($total);
+		}
+
+		return view('frontend.userprofile',compact('user_name','subject_name','answer_date','total'));
+
 	}
 }

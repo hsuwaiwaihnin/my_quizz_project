@@ -45,51 +45,38 @@
 </head>
 <body>
     <!-- HOME -->
-    <div class="container-fluid p-0" style="position: relative;width: 100%;height: 100vh;overflow: hidden;">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light px-5" style="z-index: 3;">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary px-5" style="z-index: 3;">
             <a class="navbar-brand" href="#"><img src="{{asset('frontend/img/quiz_logo.png')}}" style="width: 50px; height: 40px; border-radius: 50px;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-                    <div class="navbar-nav" id="nav-btn">
-                        <a class="nav-item nav-link active" href="#">Home</a>
-                        @guest
-                        <li class="nav-item"><a href="{{route('login')}}" class="nav-link">Login</a></li>
-                        <li class="nav-item"><a href="{{route('register')}}" class="nav-link">Register</a></li>
-                        @else
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="navbar-nav" id="nav-btn">
+                    <a class="nav-item nav-link active" href="#"> Home</a>
+                    @guest
+                    <li class="nav-item"><a href="{{route('login')}}" class="nav-link"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                    <li class="nav-item"><a href="{{route('register')}}" class="nav-link"><i class="fas fa-user"></i> Register</a></li>
+                    @else
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{Auth::user()->name}}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="javascript:void(0)">Profile</a>
-                            <a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                            <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                    @endif
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{route('userprofile')}}"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Profile</a>
+                        <a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout</a>
+                        <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
+                             @csrf
+                        </form>
+                     </div>
+                </li>
+                @endif
                         
-                    </div>
                 </div>
-        </nav>
+            </div>
+    </nav>
     
 
-            <!-- image   -->
-            <div class="background-img" style="position: absolute;width: 100%;height: 100%;overflow: hidden;">
-                <img src="{{asset('frontend/img/q2.jpg')}}" style="position: absolute;width: 100%;height: 100%;background-size: cover;background-position: center;">
-            </div>
-            <div class="content-bg" style="position: absolute;top: 35%;left: 7%;z-index: 2;">
-                <p style="font-size: 30px;font-weight: 100;opacity: .8;" class="text-light">The Best Quiz Of The State</p>
-                <h1 class="text-light" style="font-size: 50px;line-height: 70px;margin-bottom: 15px;letter-spacing: 5px;">Online Quizz System</h1>
-                <button class="btn btn-light text-dark my-3">Improve Now</button>
-            </div>
-            <div class="black" style="position: absolute;width: 100%;height: 100%;background: rgba(0,0,0,.3);left: 0;top: 0;z-index: 1;">
-                
-            </div>
-    </div>
     <!-- END HOME -->
     <div> @yield('content') </div>
     <!-- footer -->
