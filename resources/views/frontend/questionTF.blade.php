@@ -1,6 +1,12 @@
 @extends('frontendtemplate')
 @section('content')
 
+@section('stylesheet')
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	
+@endsection
+
 <div class="container my-5">
 	<input type="hidden" name="" data-id=" {{Auth::user()->id}}" id="user">
 	<?php $i=1; ?>
@@ -85,8 +91,9 @@
 				headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')}
 			});
 			$.post('/storeanswer',{data:qstr},function(response){
-				alert(response);
+				//alert('Total Marks is '+response);
 				localStorage.clear();
+				//location.reload();
 
 
 			});
@@ -98,3 +105,15 @@
 
 </script>
 @endsection
+
+@push('sweet')
+<script>
+	$('#submitBtn').click(function (e){
+		//e.preventDefault();
+
+		Swal.fire("Good job!", "You clicked the button!", "success");
+		//location.reload();
+
+	});
+</script>
+@endpush

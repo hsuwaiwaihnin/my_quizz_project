@@ -60,13 +60,16 @@ class FrontendController extends Controller
 		$user->subjects()->attach($subject_id,['answer_date'=>date('Y-m-d'),'total'=>$total]);
 
 		return $total;
+		// dd($total);
 		
 	}
 
 	public function profiledata(Request $request)
 	{
-		$users=Auth::user();
-		foreach ($users->subjects as $row) {
+		/*$user=Auth::user();
+		$user->subjects*/
+
+		/*foreach ($users->subjects as $row) {
 			//dd($row);
 			$subject_name=$row->name;
 			$user_name=Auth::user()->name;
@@ -74,9 +77,9 @@ class FrontendController extends Controller
 			$answer_date=$row->pivot->answer_date;
 			$total=$row->pivot->total;
 			//dd($total);
-		}
+		}*/
 
-		return view('frontend.userprofile',compact('user_name','subject_name','answer_date','total'));
+		return view('frontend.userprofile');
 
 	}
 }

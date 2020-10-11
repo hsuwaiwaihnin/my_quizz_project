@@ -1,6 +1,12 @@
 @extends('frontendtemplate')
 @section('content')
 
+@section('stylesheet')
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	
+@endsection
+
 <div class="container my-5">
 	<input type="hidden" name="" data-id=" {{Auth::user()->id}}" id="user">
 	<?php $i=1 ?>
@@ -11,7 +17,7 @@
 		@endif
 		<div class="col-12 shadow mb-4 p-3">
 			<h5><span class="mr-3">{{$i}}.</span>{{$ques->name}}</h5>
-			<div class="d-flex"> 
+			<div class="mx-5"> 
 				@foreach($ques->answers as $ans) 
 					<div class="form-check mr-3 my-3">
 						<input type="radio" name="answer{{$i}}" data-answer="{{$ans->status}}" data-name="answer{{$i}}" class="form-check-input mr-3 checkme" id="{{$ans->answer}}" value="{{$ans->status}}">
@@ -70,8 +76,9 @@
 				headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')}
 			});
 			$.post('/storeanswer',{data:qstr},function(response){
-				alert(response);
+				//alert('Total Marks is '+response);
 				localStorage.clear();
+				//location.reload();
 
 			});
 	});
@@ -81,3 +88,14 @@
 
 </script>
 @endsection
+
+@push('sweet')
+<script>
+	$('#submitBtn').click(function (e){
+		//e.preventDefault();
+
+		Swal.fire("Good job!", "You clicked the button!", "success");
+
+	});
+</script>
+@endpush

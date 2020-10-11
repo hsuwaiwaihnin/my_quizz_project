@@ -26,13 +26,13 @@ Route::get('/', 'FrontendController@index');
 
 Route::group(['middleware' => ['role:user']], function (){
 
-
+Route::get('main','FrontendController@index')->name('main');
 Route::get('subjectListMCQ','FrontendController@subjectTestMCQ')->name('subjectListMCQ');
 Route::get('subjectListTF','FrontendController@subjectTestTF')->name('subjectListTF');
 Route::get('questionListMCQ/{id}','FrontendController@questionTestMCQ')->name('questionListMCQ');
 Route::get('questionListTF/{id}','FrontendController@questionTestTF')->name('questionListTF');
 Route::post('storeanswer','FrontendController@storedata')->name('storeanswer');
-Route::get('userprofile','FrontendController@profiledata')->name('userprofile');
+Route::get('userprofile','FrontendController@profiledata')->name('userprofile');	
 
 });
 

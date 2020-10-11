@@ -7,6 +7,9 @@
     <style type="text/css" href="{{asset('frontend/quiz.css')}}"></style>
     <link rel="stylesheet" type="text/css" href="{{asset('frontend/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend/fontawesome/css/all.min.css')}}">
+
+    @yield('stylesheet')
+
     <style type="text/css">
         #nav-btn a{
             font-size: 17px;
@@ -45,25 +48,24 @@
 </head>
 <body>
     <!-- HOME -->
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-secondary px-5" style="z-index: 3;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light px-5" style="z-index: 3;">
             <a class="navbar-brand" href="#"><img src="{{asset('frontend/img/quiz_logo.png')}}" style="width: 50px; height: 40px; border-radius: 50px;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-                <div class="navbar-nav" id="nav-btn">
-                    <a class="nav-item nav-link active" href="#"> Home</a>
+                <div class="navbar-nav text-white" id="nav-btn">
+                    <a class="nav-item nav-link active" href="{{route('main')}}"> Home</a>
                     @guest
                     <li class="nav-item"><a href="{{route('login')}}" class="nav-link"><i class="fas fa-sign-in-alt"></i> Login</a></li>
                     <li class="nav-item"><a href="{{route('register')}}" class="nav-link"><i class="fas fa-user"></i> Register</a></li>
                     @else
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{Auth::user()->name}}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{route('userprofile')}}"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Profile</a>
+                        <a class="dropdown-item" href="{{route('userprofile',Auth::user()->id)}}" ><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Profile</a>
                         <a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout</a>
                         <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
                              @csrf
@@ -75,12 +77,12 @@
                 </div>
             </div>
     </nav>
-    
 
     <!-- END HOME -->
     <div> @yield('content') </div>
     <!-- footer -->
-    <div class="container-fluid" id="footer" style="background-color: #1C2833;padding:100px;padding-bottom: 0px;padding-top: 70px;b  ">
+    <footer>
+    <div class="container-fluid mt-5" id="footer" style="background-color: #1C2833;padding:100px;padding-bottom: 0px;padding-top: 70px;b  ">
         <div class="row">
             <div class="col-12 col-md-3">
                 <p class="mb-4 text-light" style="font-size: 25px;">&copy; 2020 Quizizz Inc.</p>
@@ -113,10 +115,13 @@
             </div>
         </div>
     </div>
-
+</footer>
     <!-- end footer -->
     <script type="text/javascript" src="{{asset('frontend/bootstrap/js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('frontend/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+    @stack('sweet')
+
     @yield('script')
 </body>
 </html>
